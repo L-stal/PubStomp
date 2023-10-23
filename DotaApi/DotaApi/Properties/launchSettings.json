@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DotaApi (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "DotaApi (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

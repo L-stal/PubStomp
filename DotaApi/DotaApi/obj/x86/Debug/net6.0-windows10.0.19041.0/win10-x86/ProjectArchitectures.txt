@@ -1,0 +1,1 @@
+C:\Users\leost\Desktop\Code map\Dota2OpenAPI\DotaApi\DotaApi\DotaApi.csproj;x86
