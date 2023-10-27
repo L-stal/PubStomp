@@ -1,18 +1,6 @@
 using Microsoft.UI.Xaml;
-using System.Net.Http;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using DotaApi.ApiManger;
+using Newtonsoft.Json.Linq;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -24,48 +12,39 @@ namespace DotaApi
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        private readonly ApiManager apiManager;
         public MainWindow()
         {
             this.InitializeComponent();
-        }
-        public async void ApiTextCall(object sender, RoutedEventArgs e)
-        {
-            // Your API endpoint
-            string apiUrl = "https://api.opendota.com/api/matches/7401120722";
-
-            // Create an instance of HttpClient
-            using (HttpClient client = new HttpClient())
-            {
-                try
-                {
-                    // Make the GET request
-                    HttpResponseMessage response = await client.GetAsync(apiUrl);
-
-                    // Check if the request was successful
-                    if (response.IsSuccessStatusCode)
-                    {
-                        // Read and display the content
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        DisplayApiResponse(apiResponse);
-                    }
-                    else
-                    {
-                        // Handle the error
-                        DisplayApiResponse($"Error: {response.StatusCode}");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Handle exceptions
-                    DisplayApiResponse($"Error: {ex.Message}");
-                }
-            }
+            apiManager = new ApiManager();
         }
 
-        private void DisplayApiResponse(string response)
+        private async void ApiTextCall(object sender, RoutedEventArgs e)
         {
-            // Assuming you have a TextBlock named "responseTextBlock" in your XAML
-            responseTextBlock.Text = response;
+            string matchData = await apiManager.GetMatch();
+            DisplayMatchData(matchData);
+        }
+
+        private void DisplayMatchData(string text)
+        {
+            allMatchDataTextBox.Text = text;
+        }
+        private async void GetNamesAndHeros(object sender, RoutedEventArgs e)
+        {
+            string namesAndHeros = await apiManager.GetMatch();
+            DisplayNamesAndHeros(namesAndHeros);
+
+        }
+        private void DisplayNamesAndHeros(string text)
+        {
+            JObject jsonResponse = JObject.Parse(text);
+            JArray players = (JArray)jsonResponse["players:personaname"];
+            JArray heroes = (JArray)jsonResponse["hero_id"];
+
+            string heroesString = "Heroes:\n" + string.Join(", ", heroes);
+            string playersString = "Players:\n" + string.Join(", ", players);
+
+            namesAndHeroesTextBox.Text = playersString + "\n" + heroesString;
         }
     }
 }

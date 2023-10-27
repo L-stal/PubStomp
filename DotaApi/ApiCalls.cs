@@ -10,26 +10,33 @@ public class ApiService
         _httpClient = new HttpClient();
     }
 
-    public async Task<string> GetApiResponse(string apiUrl)
+    public async void ApiTextCall(object sender, RoutedEventArgs e)
     {
-        try
+        string apiUrl = "https://api.opendota.com/api/matches/7401120722";
+        using (HttpClient client = new HttpClient())
         {
-            HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
 
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsStringAsync();
+                // Check if the request was successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Read and display the content
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    DisplayApiResponse(apiResponse);
+                }
+                else
+                {
+                    // Handle the error
+                    DisplayApiResponse($"Error: {response.StatusCode}");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // Handle error
-                return $"Error: {response.StatusCode}";
+                // Handle exceptions
+                DisplayApiResponse($"Error: {ex.Message}");
             }
-        }
-        catch (Exception ex)
-        {
-            // Handle exception
-            return $"Exception: {ex.Message}";
         }
     }
 }
