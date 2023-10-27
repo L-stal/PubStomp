@@ -1,4 +1,5 @@
 using Microsoft.UI.Xaml;
+using System.Net.Http;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -27,15 +28,44 @@ namespace DotaApi
         {
             this.InitializeComponent();
         }
+        public async void ApiTextCall(object sender, RoutedEventArgs e)
+        {
+            // Your API endpoint
+            string apiUrl = "https://api.opendota.com/api/matches/7401120722";
 
-        //private void myButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    myButton.Content = "Clicked";
-        //}
+            // Create an instance of HttpClient
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    // Make the GET request
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
 
-        public void stringTest(string input , RoutedEventArgs s)
-        { 
-        
+                    // Check if the request was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Read and display the content
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        DisplayApiResponse(apiResponse);
+                    }
+                    else
+                    {
+                        // Handle the error
+                        DisplayApiResponse($"Error: {response.StatusCode}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle exceptions
+                    DisplayApiResponse($"Error: {ex.Message}");
+                }
+            }
+        }
+
+        private void DisplayApiResponse(string response)
+        {
+            // Assuming you have a TextBlock named "responseTextBlock" in your XAML
+            responseTextBlock.Text = response;
         }
     }
 }

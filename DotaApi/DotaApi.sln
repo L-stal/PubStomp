@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotaApi", "DotaApi\DotaApi.csproj", "{7459DF7E-31A2-4DA1-8413-670732898507}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotaApi", "DotaApi\DotaApi.csproj", "{7459DF7E-31A2-4DA1-8413-670732898507}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiService", "ApiService", "{87330A58-B338-47E8-BC03-3B1EF06835B8}"
+	ProjectSection(SolutionItems) = preProject
+		ApiCalls.cs = ApiCalls.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
