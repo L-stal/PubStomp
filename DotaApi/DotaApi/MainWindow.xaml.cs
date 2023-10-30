@@ -2,6 +2,9 @@ using Microsoft.UI.Xaml;
 using DotaApi.ApiManger;
 using Newtonsoft.Json.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -36,7 +39,7 @@ namespace DotaApi
             DisplayNamesAndHeros(namesAndHeros);
 
         }
-        private void DisplayNamesAndHeros(string text)
+        private async void DisplayNamesAndHeros(string text)
         {
             JObject jsonResponse = JObject.Parse(text);
 
@@ -48,10 +51,18 @@ namespace DotaApi
                     string playerName = (string)player["personaname"];
                     if (playerName == null) 
                     {
-                        playerName = "NNF";
+                        playerName = "Private Account";
                     }
-                    string heroId = (string)player["hero_id"];
-                    sb.AppendLine($"{playerName}\n{heroId}");
+                    int heroId;
+                    if (int.TryParse(player["hero_id"].ToString() , out heroId))
+                    {
+                        JToken hero = await GetHeroById(heroId);
+                        if ( hero != null)
+                        {
+                            string heroName = (string)hero["localized_name"];
+                            sb.AppendLine($"Player: {playerName} || Hero: {heroName}");
+                        }
+                    }
 
                 }
                 namesAndHeroesTextBox.Text = sb.ToString();
@@ -59,6 +70,20 @@ namespace DotaApi
             else
             {
                 namesAndHeroesTextBox.Text = "No player data found.";
+            }
+        }
+        private async Task<JToken> GetHeroById(int heroId) 
+        {
+            try
+            {
+                var json = await File.ReadAllTextAsync("C:/Users/leost/Desktop/Code map/Dota2OpenAPI/DotaApi/DotaApi/Data/Heroes.json");
+                JObject heroes = JObject.Parse(json);
+                JToken hero = heroes[heroId.ToString()];
+                return hero;
+            } 
+            catch {
+                Console.WriteLine("No json file found {ex.Message}");
+                return null;
             }
         }
     }

@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\leost\Desktop\Code map\Dota2OpenAPI\DotaApi\DotaApi\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2023-10-30T12:09:50.281</Modified>
+      <Modified>2023-10-30T17:59:29.825</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\leost\Desktop\Code map\Dota2OpenAPI\DotaApi\DotaApi\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2023-10-30T12:04:41.380</Modified>
+      <Modified>2023-10-30T17:58:00.064</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\leost\Desktop\Code map\Dota2OpenAPI\DotaApi\DotaApi\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\DotaApi.runtimeconfig.json">
       <PackagePath>DotaApi.runtimeconfig.json</PackagePath>
@@ -44,15 +44,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\leost\Desktop\Code map\Dota2OpenAPI\DotaApi\DotaApi\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\DotaApi.dll">
       <PackagePath>DotaApi.dll</PackagePath>
-      <Modified>2023-10-30T12:09:50.059</Modified>
+      <Modified>2023-10-30T17:59:29.600</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\leost\Desktop\Code map\Dota2OpenAPI\DotaApi\DotaApi\obj\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\apphost.exe">
       <PackagePath>DotaApi.exe</PackagePath>
-      <Modified>2023-10-30T12:09:50.064</Modified>
+      <Modified>2023-10-30T17:59:29.605</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\leost\Desktop\Code map\Dota2OpenAPI\DotaApi\DotaApi\bin\x86\Debug\net6.0-windows10.0.19041.0\win10-x86\DotaApi.deps.json">
       <PackagePath>DotaApi.deps.json</PackagePath>
-      <Modified>2023-10-27T13:03:28.930</Modified>
+      <Modified>2023-10-30T17:04:09.809</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\leost\.nuget\packages\microsoft.netcore.app.runtime.win-x86\6.0.23\runtimes\win-x86\lib\net6.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
