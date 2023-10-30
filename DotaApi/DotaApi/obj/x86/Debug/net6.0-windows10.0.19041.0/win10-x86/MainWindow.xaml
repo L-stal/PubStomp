@@ -7,25 +7,32 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Grid>
+        <Image Source="/Assets/backrounddotaapi.png" Stretch="UniformToFill" />
+        <Grid Width="Auto" Height="Auto" Padding="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-    <Grid Width="400" Height="250" Padding="2"
-   HorizontalAlignment="Center"
-     VerticalAlignment="Center">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+            <TextBox x:ConnectionId='2' TextWrapping="Wrap" Grid.Row="0" Grid.Column="1" x:Name="allMatchDataTextBox" />
 
+            <Button x:ConnectionId='3' Content="Call Match" Grid.Row="0" Grid.Column="0"                      />
 
+            <TextBox x:ConnectionId='4' TextWrapping="Wrap" Grid.Row="0" Grid.Column="3" x:Name="namesAndHeroesTextBox" />
 
-        <TextBlock x:ConnectionId='2' Grid.Row="0" Grid.Column="0" Name="WriteSomeThing"  Margin="0,0,2,0" />
-        <TextBox Grid.Row="0" Grid.Column="0" />
-        <TextBlock Grid.Row="2" Text=" Output" />
+            <Button x:ConnectionId='5' Content="Heroes" Grid.Row="0" Grid.Column="2"                           />
+        </Grid>
     </Grid>
+
 
 </Window>
 
