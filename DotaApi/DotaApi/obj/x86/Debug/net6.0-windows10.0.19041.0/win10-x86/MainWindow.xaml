@@ -9,7 +9,7 @@
     mc:Ignorable="d">
     <Grid>
         <Image Source="/Assets/backrounddotaapi.png" Stretch="UniformToFill" />
-        <Grid Width="400" Height="250" Padding="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Width="Auto" Height="Auto" Padding="4" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -18,16 +18,18 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBox x:ConnectionId='2' TextWrapping="Wrap" Grid.Row="1" Grid.Column="1" x:Name="allMatchDataTextBox" />
+            <TextBox x:ConnectionId='2' TextWrapping="Wrap" Grid.Row="0" Grid.Column="1" x:Name="allMatchDataTextBox" />
 
-            <Button x:ConnectionId='3' Content="Call Match" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                     />
+            <Button x:ConnectionId='3' Content="Call Match" Grid.Row="0" Grid.Column="0"                      />
 
-            <TextBox x:ConnectionId='4' TextWrapping="Wrap" Grid.Row="3" Grid.Column="1" x:Name="namesAndHeroesTextBox" />
+            <TextBox x:ConnectionId='4' TextWrapping="Wrap" Grid.Row="0" Grid.Column="3" x:Name="namesAndHeroesTextBox" />
 
-            <Button x:ConnectionId='5' Content="Heroes" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"                          />
+            <Button x:ConnectionId='5' Content="Heroes" Grid.Row="0" Grid.Column="2"                           />
         </Grid>
     </Grid>
 

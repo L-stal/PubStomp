@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml;
 using DotaApi.ApiManger;
 using Newtonsoft.Json.Linq;
+using System.Text;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -38,13 +39,27 @@ namespace DotaApi
         private void DisplayNamesAndHeros(string text)
         {
             JObject jsonResponse = JObject.Parse(text);
-            JArray players = (JArray)jsonResponse["players:personaname"];
-            JArray heroes = (JArray)jsonResponse["hero_id"];
 
-            string heroesString = "Heroes:\n" + string.Join(", ", heroes);
-            string playersString = "Players:\n" + string.Join(", ", players);
+            if (jsonResponse["players"] != null && jsonResponse["players"].HasValues)
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (JToken player in jsonResponse["players"])
+                {
+                    string playerName = (string)player["personaname"];
+                    if (playerName == null) 
+                    {
+                        playerName = "NNF";
+                    }
+                    string heroId = (string)player["hero_id"];
+                    sb.AppendLine($"{playerName}\n{heroId}");
 
-            namesAndHeroesTextBox.Text = playersString + "\n" + heroesString;
+                }
+                namesAndHeroesTextBox.Text = sb.ToString();
+            }
+            else
+            {
+                namesAndHeroesTextBox.Text = "No player data found.";
+            }
         }
     }
 }
